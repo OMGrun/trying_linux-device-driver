@@ -20,4 +20,34 @@ the printk which we expect to show the print message in the kernel logs, so how 
 So now, how do we remove the modules? `sudo rmmod ldd` and then if you sudo dmesg then it should print
 goodybye or anythign our message says
 
-So bascially, our saint-module-init is the constructor and saint-module-exit is the destructor
+so, for step by step
+```bash
+make # you will haver the ldd.ko
+sudo insmod ldd.ko # feed into the kernel
+echo $? #if it prints 0, it is a success
+sudo dmesg #log buffer to see if our instruction was printed, you should see hello world on the very last line
+sudo rmmod ldd # to unplug from kernel.
+
+```
+
+for refernece, this is the C-code:
+```c
+#include <linux/init.h>
+#include <linux/module.h>
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Saint");
+MODULE_DESCRIPTION("Our first dynamically loadable kernel module");
+
+static int saint_module_init (void) {
+	printk("Hello, World! (from Saint!!)\n");
+	return 0;
+}
+
+static void saint_module_exit (void) {
+	printk("Good, Bye! (from Saint!!)\n");
+}
+
+module_init(saint_module_init);
+module_exit(saint_module_exit);
+```

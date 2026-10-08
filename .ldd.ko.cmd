@@ -1,1 +1,1 @@
-savedcmd_ldd.ko := ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T /usr/src/linux-headers-7.0.0-31-generic/scripts/module.lds -o ldd.ko ldd.o ldd.mod.o .module-common.o
+savedcmd_ldd.ko := ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T /usr/src/linux-headers-7.0.0-34-generic/scripts/module.lds -o ldd.ko ldd.o ldd.mod.o .module-common.o
