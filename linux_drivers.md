@@ -75,3 +75,34 @@ This right here is the bare minimum code that we need to write a linux kernel mo
 make is a utility which helps with automation (kinda like bash i guess?), for executing commands that we can write on the shell
 
 ie, `gcc main.c -o main` we can make make (pun intended) execute the command for us.
+Very important: The makefile file name has to be Makefile, the M must be capital or you can do filename.mk
+but then you have to flag the make file, ie, `make -f ---.mk target`
+
+Now *syntax and rules*
+
+we specify:
+
+target: dependencies (first line is dependencies)
+    gcc main.c ... (tab command, must have tab)
+
+then you can haver another taget and so on and so forth, targets don't always need to have a dependency
+
+target name can be anything, for example, we want x.c $\rarr$ x.o
+
+then
+```mk
+xyz: x.c
+    gcc x.c -o x.o
+```
+
+you can write, make xyz, then it will find the target called xyz, and check "do we have the x.c file. yes? then it will execute the gcc command.
+
+The first time it is executed, it will check if the output exists, the second time we run it, it will compare the time and x.o is newer than x.c then it will not run the command, it will run the command if x.o is older though.
+
+It has to be a tab under the target btw, cannot be spaces or anything, must be a tab character. If we just run make, it
+will execute the first target, and then if you specify it then it will run the specificed target.
+
+One concrete example, say you have a makefile called saint.mk and in there you have a test.text target, you can run that target by doing
+`make -f saint.mk test.text`
+
+
