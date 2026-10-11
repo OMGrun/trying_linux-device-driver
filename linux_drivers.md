@@ -12,6 +12,7 @@ Host primary (for the multipass)
     IndetityFile (where your key lives)
     IdentitiesOnly
 
+# Getting Started on simply printing an output in the kernel
 .ko files are what the kernel takes, and then we need to check if it verifies and the way to check if verifies is to call a util called insmod: hence, sudo insmod ldd.ko then check with echo $? and if 0 then good!
 
 for example in our code, we have:
@@ -21,6 +22,7 @@ So now, how do we remove the modules? `sudo rmmod ldd` and then if you sudo dmes
 goodybye or anythign our message says
 
 so, for step by step
+
 ```bash
 make # you will haver the ldd.ko
 sudo insmod ldd.ko # feed into the kernel
@@ -31,6 +33,7 @@ sudo rmmod ldd # to unplug from kernel.
 ```
 
 for refernece, this is the C-code:
+
 ```c
 #include <linux/init.h>
 #include <linux/module.h>
@@ -51,3 +54,6 @@ static void saint_module_exit (void) {
 module_init(saint_module_init);
 module_exit(saint_module_exit);
 ```
+take a look at module\_init and exit, they are what you call macros and comes from the header file
+
+why is GPL necessary, it gives you access to things in the lincese, such that it does not restrict you.
