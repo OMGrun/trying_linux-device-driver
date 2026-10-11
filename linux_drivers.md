@@ -24,10 +24,10 @@ goodybye or anythign our message says
 so, for step by step
 
 ```bash
-make # you will haver the ldd.ko
+make # you will haver the ldd.ko make clean to clear up the files
 sudo insmod ldd.ko # feed into the kernel
 echo $? #if it prints 0, it is a success
-sudo dmesg #log buffer to see if our instruction was printed, you should see hello world on the very last line
+sudo dmesg #log buffer to see if our instruction was printed, you should see hello world on the very last line (prints kernel log)
 sudo rmmod ldd # to unplug from kernel.
 
 ```
@@ -57,3 +57,21 @@ module_exit(saint_module_exit);
 take a look at module\_init and exit, they are what you call macros and comes from the header file
 
 why is GPL necessary, it gives you access to things in the lincese, such that it does not restrict you.
+
+```bash
+
+sudo dmesg -c # prints kernel log and also clears it!
+
+```
+if you do `modinfo` it prints the info, ie the file name, description, author, lincese, etc.
+It does not need the file name, just the access to the .ko file is good
+
+This right here is the bare minimum code that we need to write a linux kernel module
+
+---
+
+## Deep dive into Makefile and the basics of MakeFile (good to know)
+
+make is a utility which helps with automation (kinda like bash i guess?), for executing commands that we can write on the shell
+
+ie, `gcc main.c -o main` we can make make (pun intended) execute the command for us.
