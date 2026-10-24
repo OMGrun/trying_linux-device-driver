@@ -105,4 +105,54 @@ will execute the first target, and then if you specify it then it will run the s
 One concrete example, say you have a makefile called saint.mk and in there you have a test.text target, you can run that target by doing
 `make -f saint.mk test.text`
 
+---
 
+## Exploring LSMOD
+
+handy to ensure that our module is accepted by the kernel.
+
+if forexample, you type out `lsmod` into the terminal, you will see all the modules that are loaded, as well as who is refering to it.
+
+if you do `rmmod ldd` and then `lsmod` you will see that it is no longer in the list. This is exactly how you check!
+
+## insmod module
+1. calls `init_module` to hint the kernel that a module insertion is attempted.
+2. Transfers control to the kernel
+3. Kernel execute `sys_init_module`
+4. verifies permissions
+5. `load_module` funbction is called 
+    1. checks the sanity of the .ko
+    2. creates memory
+    3. Copies from user space to kernel space
+    4. Resolves sysbols.
+    5. Returns a reference to the kernel
+6. Adds the reference to a linked list that has all the loaded modules.
+7 `module_init` listed function
+
+## rmmod module
+1. `rmmod` calls `delete_module()` which hints the kernel that a module is to be removed
+    1. control is transfered to the kernel
+2. Kernel executes `sys_delete_module()`
+    1. Checks the permissions of the one requesting.
+    2. Check if any other loaded module needs the current module.
+    3. Checks if the module is actualyl loaded
+    4. Executes the function provided in `module_exit`
+    5. `free_module()`
+        1. removes references and kernel object references
+        2. performs any other cleanup.
+        3. unloads the module
+        4. changes the state in list
+        5. removes it from the list and frees the memory
+
+
+
+
+
+
+
+
+
+
+
+
+NOTE: Special thanks to inpyjamaarchieves and freeCodeCamp.org on YT as they were the one who taught this

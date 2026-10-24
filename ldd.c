@@ -6,7 +6,7 @@ MODULE_AUTHOR("Saint");
 MODULE_DESCRIPTION("Our first dynamically loadable kernel module");
 
 static int saint_module_init (void) {
-	printk("Hello, World! (from Saint!!)\n");
+	printk("Hello, again! (from Saint!!)\n");
 	return 0;
 }
 
