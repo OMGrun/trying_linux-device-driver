@@ -144,8 +144,17 @@ if you do `rmmod ldd` and then `lsmod` you will see that it is no longer in the 
         4. changes the state in list
         5. removes it from the list and frees the memory
 
+## modinfo
+
+shows the infomration about the file, ie, the filename, description, author, license, etc
 
 
+## making the driver interactive
+
+we will go for a simpler file system called a proc file system (virtual file system)
+/proc directory is not a real file, they are logical and imaginary. 
+
+when a read write happens, the kernel dynamically print some output to the user
 
 
 
