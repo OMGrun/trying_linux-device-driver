@@ -7,7 +7,18 @@ MODULE_AUTHOR("Saint");
 MODULE_DESCRIPTION("Our first dynamically loadable kernel module");
 
 static struct proc_dir_entry *proc_entry;
+
+
+
+ssize_t saint_read(struct file * file_pointer, char __user *user_space_buffer, size_t count, loff_t * offset) {
+	printk("saint_read\n");
+	return 0;
+}
+
+
+
 struct proc_ops driver_proc_ops = {
+	.proc_read = saint_read
 
 };
 
@@ -18,6 +29,10 @@ static int saint_module_init (void) {
 			0, 
 			NULL, 
 			&driver_proc_ops);
+	if (proc_entry == NULL) {
+		printk("saint_module_init: error\n");
+		return -1;
+	}
 	printk("saint_module_init: exit\n");
 
 	return 0;
