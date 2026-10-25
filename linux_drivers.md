@@ -88,7 +88,7 @@ target: dependencies (first line is dependencies)
 
 then you can haver another taget and so on and so forth, targets don't always need to have a dependency
 
-target name can be anything, for example, we want x.c $\rarr$ x.o
+target name can be anything, for example, we want x.c $\rightarrow$ x.o
 
 then
 ```mk
@@ -208,6 +208,23 @@ module_exit(saint_module_exit);
 
 ```
 now when we do insmod ldd.ko and then do lsmod you should see that it is loaded, then if you do `ls /proc/` you should see the file called "saint\_driver"
+
+
+## making it read
+
+we implement the proc read and we put it in the proc\_ops, you will then find that when we do `cat /proc/saint\_driver`
+then `sudo dmesg` it will print saint\_read
+
+now when we perform thje read, can we print something in the user space?right now, we are printing to the kernel. (also note that the read is happening in user space)
+
+## passing data from kernel space to user space
+
+In saint\_read, if you wanbt to print to user space, it expects to return the lenght of what you are going to print
+
+but now, ack is being continuously printed. why? because the read is being called too many times!. It is also due to us retuyrning the length, it only knows it has reached the end of file when the number returned is 0. so how do we do that? By uysing the offset!
+
+
+
 
 
 
