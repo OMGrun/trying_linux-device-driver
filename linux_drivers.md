@@ -229,6 +229,13 @@ Then you can make a condition that if the offset is more than the length, we wan
 
 Now it should work!
 
+## next part:
+
+Can we implement write? and can we have an empty buffer in the kernel space as part of the ldd driver, like msg but empty.
+
+Implement the proc\_write() function, take input from the user and write them in this msg buffer. and then the next time a user
+performs a read, then parse back what they had inputted
+
 
 
 
