@@ -223,7 +223,11 @@ In saint\_read, if you wanbt to print to user space, it expects to return the le
 
 but now, ack is being continuously printed. why? because the read is being called too many times!. It is also due to us retuyrning the length, it only knows it has reached the end of file when the number returned is 0. so how do we do that? By uysing the offset!
 
+Right now the offset just reads at 0 again over and over again, hence we keep reading the same 'positions' what we want is for it to
+read after.
+Then you can make a condition that if the offset is more than the length, we want to print 0... cuz there is nothing more to read.
 
+Now it should work!
 
 
 

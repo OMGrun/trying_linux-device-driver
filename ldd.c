@@ -14,14 +14,17 @@ static ssize_t saint_read(struct file * file_pointer, char __user *user_space_bu
 	char msg[] = "Ack!\n";
 	size_t len = strlen(msg);
 	int result;
+	printk("saint_read\n");
+
+	if(*offset >= len)
+		return 0;
 
 
 	result = copy_to_user(user_space_buffer, msg, len);
-	
+	*offset += len;
 
 
 
-	printk("saint_read\n");
 	return len;
 }
 
