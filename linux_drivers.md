@@ -1,3 +1,4 @@
+# My notes
 A multipass is basically a hypervisor or instance manager and then we can ssh from vscod.
 Remember the way to connect is is basically by going into vscodium ssh target config:
 
@@ -25,7 +26,7 @@ so, for step by step
 
 ```bash
 make # you will haver the ldd.ko make clean to clear up the files
-sudo insmod ldd.ko # feed into the kernel
+sudo insmod ldd.ko # feed into the kernel/load module into the kernel
 echo $? #if it prints 0, it is a success
 sudo dmesg #log buffer to see if our instruction was printed, you should see hello world on the very last line (prints kernel log)
 sudo rmmod ldd # to unplug from kernel.
@@ -156,7 +157,16 @@ we will go for a simpler file system called a proc file system (virtual file sys
 
 when a read write happens, the kernel dynamically print some output to the user
 
+now we are going to implement the driver handling the read.
 
+there is a kernel api available to create the proc file system entry
+
+what is interesting is that when i do, `file /proc/driver/rtc` it is empty however, when i `cat` it prints. 
+Most likely because there is an rtc driver there which detects the read() operation
+
+so the files of the proc does not exist on the real disk but reading and printing it can lead to interesting results, the driverdynamically prints that information
+
+so we use the `#include <linux/proc_fs.h>` to mess around with the proc file
 
 
 

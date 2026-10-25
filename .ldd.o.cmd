@@ -1033,6 +1033,8 @@ deps_ldd.o := \
   /usr/src/linux-headers-7.0.0-34-generic/arch/arm64/include/asm/module.h \
   /usr/src/linux-headers-7.0.0-34-generic/include/asm-generic/module.h \
     $(wildcard include/config/HAVE_MOD_ARCH_SPECIFIC) \
+  /usr/src/linux-headers-7.0.0-34-generic/include/linux/proc_fs.h \
+    $(wildcard include/config/PROC_PID_ARCH_STATUS) \
 
 ldd.o: $(deps_ldd.o)
 

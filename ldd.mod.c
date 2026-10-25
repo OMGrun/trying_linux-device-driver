@@ -19,21 +19,27 @@ __section(".gnu.linkonce.this_module") = {
 static const struct modversion_info ____versions[]
 __used __section("__versions") = {
 	{ 0xe8213e80, "_printk" },
+	{ 0xc2f71d5e, "proc_create" },
+	{ 0x5aec4bc0, "proc_remove" },
 	{ 0xc7ea9460, "module_layout" },
 };
 
 static const u32 ____version_ext_crcs[]
 __used __section("__version_ext_crcs") = {
 	0xe8213e80,
+	0xc2f71d5e,
+	0x5aec4bc0,
 	0xc7ea9460,
 };
 static const char ____version_ext_names[]
 __used __section("__version_ext_names") =
 	"_printk\0"
+	"proc_create\0"
+	"proc_remove\0"
 	"module_layout\0"
 ;
 
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "79D0DEE38F4ABD4D51EC579");
+MODULE_INFO(srcversion, "5236D6F65900138E6C113AD");
