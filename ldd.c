@@ -11,7 +11,7 @@ static struct proc_dir_entry *proc_entry;
 
 
 static ssize_t saint_read(struct file * file_pointer, char __user *user_space_buffer, size_t count, loff_t * offset) {
-	char msg[] = "Ack!\n";
+	char msg[] = "hello user!\n";
 	size_t len = strlen(msg);
 	int result;
 	printk("saint_read\n");
